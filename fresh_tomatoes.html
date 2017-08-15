@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        
+        .navbar-custom {
+            background-color: #16a085;
+            font-weight: bold;
+            #text-shadow: 1px 1px #16a085;
+            color: #232323;
+            background: rgba(22, 160, 133, 1);
+            background: -moz-linear-gradient(top, rgba(22, 160, 133, 1) 0%, rgba(26, 188, 156, 1) 47%, rgba(26, 188, 156, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(22, 160, 133, 1)), color-stop(47%, rgba(26, 188, 156, 1)), color-stop(100%, rgba(26, 188, 156, 1)));
+            background: -webkit-linear-gradient(top, rgba(22, 160, 133, 1) 0%, rgba(26, 188, 156, 1) 47%, rgba(26, 188, 156, 1) 100%);
+            background: -o-linear-gradient(top, rgba(22, 160, 133, 1) 0%, rgba(26, 188, 156, 1) 47%, rgba(26, 188, 156, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(22, 160, 133, 1) 0%, rgba(26, 188, 156, 1) 47%, rgba(26, 188, 156, 1) 100%);
+            background: linear-gradient(to bottom, rgba(22, 160, 133, 1) 0%, rgba(26, 188, 156, 1) 47%, rgba(26, 188, 156, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#16a085', endColorstr='#1abc9c', GradientType=0);
+        }
+        
+        .centerImage {
+            text-align: center;
+            display: block;
+        }
+        
+        .shadow-text {
+            text-shadow: 2px 2px #232323;
+        }
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: transparent;
+        }
+        
+        li {
+            border-right: 2px solid #232323;
+            height: 50px;
+            float: left;
+        }
+        
+        li:last-child {
+            border-right: none;
+        }
+        
+        li a:hover:not(.active) {
+            color: #232323;
+            text-decoration: none;
+            border-bottom: 50px solid #BC1A3A;
+        }
+        
+        .active {
+            background-color: #232323;
+            color: #16a085;
+        }
+        
+        li a {
+            display: block;
+            color: #232323;
+            text-align: justify;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        /* Change the link color to #111 (black) on hover */
+        
+        body {
+            padding-top: 80px;
+            background-color: #232323;
+            color: #1abc9c;
+        }
+        
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 1000px;
+            height: 1000px;
+        }
+        
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .movie-tile {
+            display: inline-block;
+            background-color: white;
+            #height: 440px;
+            #width: 250px;
+            border: 1px black;
+            margin: 0px;
+            padding-top: 20px;
+            color: E3E4E4;
+        }
+        
+        .movie-tile:hover {
+            display: inline-block;
+            cursor: pointer;
+            background: rgba(188, 26, 58, 1);
+            background: -moz-linear-gradient(top, rgba(188, 26, 58, 1) 0%, rgba(26, 188, 156, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(188, 26, 58, 1)), color-stop(100%, rgba(26, 188, 156, 1)));
+            background: -webkit-linear-gradient(top, rgba(188, 26, 58, 1) 0%, rgba(26, 188, 156, 1) 100%);
+            background: -o-linear-gradient(top, rgba(188, 26, 58, 1) 0%, rgba(26, 188, 156, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(188, 26, 58, 1) 0%, rgba(26, 188, 156, 1) 100%);
+            background: linear-gradient(to bottom, rgba(188, 26, 58, 1) 0%, rgba(26, 188, 156, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bc1a3a', endColorstr='#1abc9c', GradientType=0);
+            color: #232323;
+            border-radius: 20px;
+        }
+        
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: #494A4B;
+        }
+    </style>
+
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function(event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function(event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+                'id': 'trailer-video',
+                'type': 'text-html',
+                'src': sourceUrl,
+                'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function() {
+            $('.movie-tile').hide().first().show("fast", function showNext() {
+                $(this).next("div").show("fast", showNext);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+                    <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24" />
+                </a>
+                <div class="scale-media" id="trailer-video-container">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Page Content -->
+    <div class="container">
+        <div class="navbar navbar-fixed-top navbar-custom" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <ul>
+                        <li>
+                            <img src="/Users/justinwilliams/Desktop/Python/Python/Movie Website Lesson/tomato.png" height="50px" width="50px" float="left" />
+                        </li>
+                        <li><a class="active" href="#home">Home</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="GjwfqXTebIY" data-toggle="modal" data-target="#trailer">
+            <img src="http://cdn.collider.com/wp-content/uploads/2017/03/the-dark-tower-poster.jpg" width="220" height="342">
+            <h2>The Dark Tower</h2>
+        </div>
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="1xv_FeBGzfk" data-toggle="modal" data-target="#trailer">
+            <img src="https://cdn.traileraddict.com/content/columbia-pictures/emoji-movie-poster-3.jpg" width="220" height="342">
+            <h2>Emoji Movie</h2>
+        </div>
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="F-eMt3SrfFU" data-toggle="modal" data-target="#trailer">
+            <img src="https://i0.wp.com/media2.slashfilm.com/slashfilm/wp/wp-content/images/dunkirk-poster.jpg" width="220" height="342">
+            <h2>Dunkirk</h2>
+        </div>
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="nI7HVnZlleo" data-toggle="modal" data-target="#trailer">
+            <img src="https://s-media-cache-ak0.pinimg.com/originals/e1/a4/23/e1a4230933116bb7b8d295255eb39a21.jpg" width="220" height="342">
+            <h2>Atomic Blonde</h2>
+        </div>
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="XzNrWGYzDZE" data-toggle="modal" data-target="#trailer">
+            <img src="http://www.impawards.com/2017/posters/detroit_xlg.jpg" width="220" height="342">
+            <h2>Detroit</h2>
+        </div>
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="n9DwoQ7HWvI" data-toggle="modal" data-target="#trailer">
+            <img src="http://www.impawards.com/2017/posters/spiderman_homecoming.jpg" width="220" height="342">
+            <h2>Spider-man: Homecoming</h2>
+        </div>
+
+    </div>
+</body>
+
+</html>
