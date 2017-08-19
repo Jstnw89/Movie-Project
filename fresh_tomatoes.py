@@ -5,79 +5,81 @@ import re
 
 # Styles and scripting for the page
 main_page_head = '''
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Fresh Tomatoes!</title>
+    <title>Fresh Tomatoes - Movies</title>
     <!-- Bootstrap 3 -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <style type="text/css" media="screen">
-       
-       .navbar-custom {
-            #background-color:#58E49E;
-            background: rgba(228,88,158,1);
-            background: -moz-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,0.19) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(228,88,158,1)), color-stop(100%, rgba(88,228,158,0.19)));
-            background: -webkit-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,0.19) 100%);
-            background: -o-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,0.19) 100%);
-            background: -ms-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,0.19) 100%);
-            background: linear-gradient(to bottom, rgba(228,88,158,1) 0%, rgba(88,228,158,0.19) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4589e', endColorstr='#58e49e', GradientType=0 );
-            #color:white; 
-            border-radius:0; 
+        .navbar {
+            background-color: #673AB7;
+            height: 50px;
+            width:100%;
+            -webkit-box-shadow: 0px 0px 5px 7px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 5px 7px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 5px 7px rgba(0,0,0,0.75);
         }
-        
+
         body {
             padding-top: 80px;
             background-color: #232323;
-            color: #58E49E;
-
-
         }
+
         #trailer .modal-dialog {
             margin-top: 200px;
             width: 1000px;
             height: 1000px;
         }
+
         .hanging-close {
             position: absolute;
             top: -12px;
             right: -12px;
             z-index: 9001;
         }
+
         #trailer-video {
             width: 100%;
             height: 100%;
         }
-        .movie-tile {
-            margin-bottom: 20px;
-            padding-top: 20px;
-            color:E3E4E4;
 
+        .movie-tile {
+            display: inline-block;
+            margin: 0px;
+            padding-top: 20px;
+            color: white;
         }
+
         .movie-tile:hover {
-            /*background-color: #58E49E;
-            color: #232323;
-            cursor: pointer;*/
-            background: rgba(228,88,158,1);
-            background: -moz-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,1) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(228,88,158,1)), color-stop(100%, rgba(88,228,158,1)));
-            background: -webkit-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,1) 100%);
-            background: -o-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,1) 100%);
-            background: -ms-linear-gradient(top, rgba(228,88,158,1) 0%, rgba(88,228,158,1) 100%);
-            background: linear-gradient(to bottom, rgba(228,88,158,1) 0%, rgba(88,228,158,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4589e', endColorstr='#58e49e', GradientType=0 );
-            color: #232323;
-            border-radius: 10px;
+            display: inline-block;
+            cursor: pointer;
+            background: rgba(103, 58, 183, 1);
+            background: -moz-linear-gradient(top, rgba(103, 58, 183, 1) 0%, rgba(49, 27, 146, 1) 50%, rgba(103, 58, 183, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(103, 58, 183, 1)), color-stop(50%, rgba(49, 27, 146, 1)), color-stop(100%, rgba(103, 58, 183, 1)));
+            background: -webkit-linear-gradient(top, rgba(103, 58, 183, 1) 0%, rgba(49, 27, 146, 1) 50%, rgba(103, 58, 183, 1) 100%);
+            background: -o-linear-gradient(top, rgba(103, 58, 183, 1) 0%, rgba(49, 27, 146, 1) 50%, rgba(103, 58, 183, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(103, 58, 183, 1) 0%, rgba(49, 27, 146, 1) 50%, rgba(103, 58, 183, 1) 100%);
+            background: linear-gradient(to bottom, rgba(103, 58, 183, 1) 0%, rgba(49, 27, 146, 1) 50%, rgba(103, 58, 183, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#673ab7', endColorstr='#673ab7', GradientType=0);
+            -webkit-box-shadow: -1px -1px 20px 6px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: -1px -1px 20px 6px rgba(0, 0, 0, 0.75);
+            box-shadow: -1px -1px 20px 6px rgba(0, 0, 0, 0.75);
+            color: white;
+            border-radius: 20px;
+            text-shadow: 2px 2px black;
         }
+
         .scale-media {
             padding-bottom: 56.25%;
             position: relative;
         }
+
         .scale-media iframe {
             border: none;
             height: 100%;
@@ -87,7 +89,6 @@ main_page_head = '''
             top: 0;
             background-color: #494A4B;
         }
-
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -133,12 +134,13 @@ main_page_content = '''
         </div>
       </div>
     </div>
-    <!-- Main Page Content -->
+    <!-- Main page content -->
     <div class="container">
-      <div class="navbar navbar-fixed-top navbar-custom" role="navigation">
+      <div class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+            <img src="/Users/justinwilliams/Desktop/Python/Python/Movie-website/Movie-Project/tomato.ico" alt="Icon" height="45px" width="45px"  />
+            <a class="navbar-brand" style="text-decoration:none; color:white; font-size:20px; text-shadow: 2px 2px black;" href="#"><strong>Fresh Tomatoes Movie Trailers</strong></a>
           </div>
         </div>
       </div>
@@ -151,9 +153,9 @@ main_page_content = '''
 '''
 
 
-# A single movie entry html template
+#A single movie entry html template for the each of the movie tiles.  It will scale for 3 different screen sizes
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+<div class="col-sm-6 col-md-4 col-lg-3 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
 </div>
