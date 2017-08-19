@@ -10,10 +10,12 @@ https://github.com/Jstnw89/Movie-Project.git
 
 <h3>Using the clone url and terminal:</h3>
 <em>From the Console type:</em>
+
 ```
 $ git clone https://github.com/Jstnw89/Movie-Project.git
 $ cd Movie-Project
 ```
+
 <h3>Using the download button in the github repository:</h3>
 
 Go to https://github.com/Jstnw89/Movie-Project.git and find the <strong>Green</strong> downlaod button to the right.
